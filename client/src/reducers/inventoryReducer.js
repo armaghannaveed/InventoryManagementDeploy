@@ -28,4 +28,4 @@ const inventoryReducer = (state = { itemList: [] }, action) => {
   }
 };
 
-module.exports = inventoryReducer;
+export default inventoryReducer;
