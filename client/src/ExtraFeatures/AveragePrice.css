@@ -1,0 +1,29 @@
+.average-price-container {
+    position: fixed;
+    top: 25%;
+    right: 2%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: #13273a;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+  }
+  
+  
+  .average-price-label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 12px;
+  }
+  
+  .average-price {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  

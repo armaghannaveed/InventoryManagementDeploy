@@ -1,0 +1,22 @@
+.inventory-count {
+  position: fixed;
+  top: 300px;
+  right: 70px;
+  background-color: #13273a;
+  color: #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}

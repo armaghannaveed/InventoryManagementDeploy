@@ -1,0 +1,15 @@
+.item-detail-image {
+  width: 200px; 
+  height: auto;
+}
+  .item-detail-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .item-detail-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
