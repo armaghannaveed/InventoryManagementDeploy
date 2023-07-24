@@ -1,22 +1,71 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../../src/reducers/inventoryReducer';  // Adjust path to your reducer
+import { applyMiddleware, createStore } from 'redux';
+import rootReducer from '../../src/reducers/inventoryReducer'; // Update with your path
 import InventoryForm from '../../src/form';
+import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import fetchMock from 'jest-fetch-mock';
+import '@testing-library/jest-dom/extend-expect';
 
-test('renders InventoryForm without crashing', () => {
-  render(<Provider store={createStore(rootReducer)}><InventoryForm /></Provider>);
-  const linkElement = screen.getByText(/Enter Inventory Information/i);
-  expect(linkElement).toBeInTheDocument();
-});
 
-test('simulates adding an item', () => {
-  render(<Provider store={createStore(rootReducer)}><InventoryForm /></Provider>);
-  
-  fireEvent.change(screen.getByPlaceholderText('Enter Text'), { target: { value: 'Test Item' } });
-  fireEvent.click(screen.getByText('Submit'));
-  
-  // Here, you would typically check if the action has been dispatched or if some UI change reflects the addition.
-  // For now, I'll just illustrate the input change and button click.
+const mockItem = {
+  _id: '123',
+  itemName: 'Test Item',
+  description: 'Test Description',
+  manufacturer: 'Test Manufacturer',
+  price: 100,
+  imageUrl: 'test-image-url'
+};
+
+const renderWithRedux = (
+  component,
+  { initialState, store = createStore(rootReducer, initialState, applyMiddleware(thunk)) } = {}
+) => {
+  return {
+    ...render(
+      <Provider store={store}>
+        <BrowserRouter>
+          {component}
+        </BrowserRouter>
+      </Provider>
+    ),
+    store,
+  };
+};
+
+describe('InventoryForm', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks();
+    fetchMock.mockResponseOnce(JSON.stringify([mockItem]));
+  });
+
+  test('renders InventoryForm component', () => {
+    renderWithRedux(<InventoryForm />);
+    expect(screen.getByText(/Enter Inventory Information/i)).toBeInTheDocument();
+  });
+
+  test('Checks Price input value', () => {
+    renderWithRedux(<InventoryForm />);
+    const input = screen.getByPlaceholderText('Enter Number');
+    fireEvent.change(input, { target: { value: "100" } });
+    expect(input.value).toBe("100");
+  });
+
+  test('opens and closes modal', () => {
+    renderWithRedux(<InventoryForm />, {
+      initialState: {
+        itemList: [mockItem]
+      }
+    });
+
+    const viewButton = screen.getByText('View');
+    fireEvent.click(viewButton);
+
+    expect(screen.getByText('Description: Test Description')).toBeInTheDocument();
+    expect(screen.getByText('Manufacturer: Test Manufacturer')).toBeInTheDocument();
+
+  });
+
 });

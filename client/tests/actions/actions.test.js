@@ -1,4 +1,4 @@
-const { ADD_ITEM, DELETE_ITEM, SET_ITEMS } = require('./actions');
+const { ADD_ITEM, DELETE_ITEM, SET_ITEMS } = require('../../src/actions');
 
 describe('Actions', () => {
   it('should have the correct constants', () => {
