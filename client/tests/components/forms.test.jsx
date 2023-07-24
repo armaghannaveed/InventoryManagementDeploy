@@ -60,6 +60,7 @@ describe('InventoryForm', () => {
       }
     });
 
+    
     const viewButton = screen.getByText('View');
     fireEvent.click(viewButton);
 
