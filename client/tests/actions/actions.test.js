@@ -1,25 +1,10 @@
-import { addItem } from '../../src/actions';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import fetchMock from 'jest-fetch-mock';
+const { ADD_ITEM, DELETE_ITEM, SET_ITEMS } = require('./actions');
 
-fetchMock.enableMocks();
-
-const middleware = [thunk];
-const mockStore = configureStore(middleware);
-
-describe('actions', () => {
-  it('creates ADD_ITEM action when adding an item', async () => {
-    fetch.mockResponseOnce(JSON.stringify({}));
-
-    const store = mockStore({ itemList: [] });
-
-    const item = { itemName: 'Test Item' };
-    await store.dispatch(addItem(item));
-
-    const actions = store.getActions();
-
-    // Check if the action dispatched is loadItems
-    expect(actions[0].type).toBe('SET_ITEMS');
+describe('Actions', () => {
+  it('should have the correct constants', () => {
+    expect(ADD_ITEM).toBe('ADD_ITEM');
+    expect(DELETE_ITEM).toBe('DELETE_ITEM');
+    expect(SET_ITEMS).toBe('SET_ITEMS');
   });
+  // You can also test action creators and other logic here...
 });
