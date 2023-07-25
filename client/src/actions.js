@@ -11,7 +11,7 @@ const setItems = (items) => ({
 const addItem = (item) => {
   return (dispatch) => {
     console.log(item);
-    fetch('https://inventorymanagementdeploy.onrender.com/items', {
+    return fetch('https://inventorymanagementdeploy.onrender.com/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ const addItem = (item) => {
 
 const deleteItem = (id) => {
   return (dispatch) => {
-    fetch(`https://inventorymanagementdeploy.onrender.com/items/${id}`, {
+    return fetch(`https://inventorymanagementdeploy.onrender.com/items/${id}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -43,7 +43,7 @@ const deleteItem = (id) => {
 
 const loadItems = () => {
   return (dispatch) => {
-    fetch('https://inventorymanagementdeploy.onrender.com/items')
+    return fetch('https://inventorymanagementdeploy.onrender.com/items')
       .then((response) => response.json())
       .then((data) => {
         dispatch(setItems(data));
@@ -56,7 +56,7 @@ const loadItems = () => {
 
 const deleteAllItems = () => {
   return (dispatch) => {
-    fetch(`https://inventorymanagementdeploy.onrender.com/drop`, {
+    return fetch(`https://inventorymanagementdeploy.onrender.com/drop`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -71,7 +71,7 @@ const deleteAllItems = () => {
 
 const loadSortedItems = (key) => {
   return (dispatch) => {
-    fetch(`https://inventorymanagementdeploy.onrender.com/items/sort/${key}`)
+    return fetch(`https://inventorymanagementdeploy.onrender.com/items/sort/${key}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setItems(data));
@@ -86,7 +86,7 @@ const loadSortedItems = (key) => {
 const updateItem = (id, updatedItem) => {
   console.log(id);
   return (dispatch) => {
-    fetch(`https://inventorymanagementdeploy.onrender.com/items/${id}`, {
+    return fetch(`https://inventorymanagementdeploy.onrender.com/items/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
