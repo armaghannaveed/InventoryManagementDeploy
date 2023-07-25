@@ -24,7 +24,7 @@ describe('actions', () => {
 
   it('should dispatch addItem action', () => {
     const dispatch = jest.fn();
-    const item = { name: 'Test Item', quantity: 10 };
+    const item = { name: 'Test Item', price: 10 };
 
     // Dispatch the addItem action with the mocked dispatch function
     return addItem(item)(dispatch).then(() => {
