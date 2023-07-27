@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateItem } from './actions';
 
 const ItemEditForm = ({ item, updateItem, onClose }) => {
+  
   const [editedItem, setEditedItem] = useState(item);
 
   const handleChange = (e) => {

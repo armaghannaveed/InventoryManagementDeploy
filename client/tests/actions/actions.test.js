@@ -8,6 +8,7 @@ const {
   loadSortedItems
 } = require('../../src/actions');
 
+// Help from ChatGPT
 // Mock the fetch function globally for all tests
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -65,7 +66,7 @@ describe('actions', () => {
   it('should dispatch updateItem action', () => {
     const dispatch = jest.fn();
     const itemId = 123;
-    const updatedItem = { name: 'Updated Item', quantity: 20 };
+    const updatedItem = { name: 'Updated Item', price: 20 };
 
     // Dispatch the updateItem action with the mocked dispatch function
     return updateItem(itemId, updatedItem)(dispatch).then(() => {
